@@ -1,0 +1,8 @@
+.bg{
+  width: 10%;
+  padding-bottom: 10%;
+  background: url('../img/1x24.png');
+}
+.bg h3{
+  position: absolute;
+}
