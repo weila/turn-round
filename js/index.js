@@ -8,7 +8,10 @@
   
 ;(function($, window, document, undefined) {        
   function Turn (el,opts) {
-    
+          this.x = 0,
+          this.y = 0,
+          this.imgX = 0,
+          this.imgY = 0;
     this.$ = el;
     this.defaults = {  
         'speed': 10,
@@ -62,21 +65,47 @@
   Turn.prototype.onMove = function (e) {
     this.currentX = e.pageX || e.touches[0].pageX;
     var diff = this.startX - this.currentX;
+    var dir = (diff > 0) ? 'left' : 'right';
     this.frames = Math.ceil(diff / 100 * this.options.speed);
-    this.setImg();
+    this.setImg(dir);
   };
 
   Turn.prototype.onEnd = function (e) {
     var diff = this.startX - this.currentX;
-    var direction = (diff > 0) ? 'left' : 'right';
+    
     this.startX = 0;
   }; 
-  Turn.prototype.setImg = function (){
+  Turn.prototype.setImg = function (dir){
     var imgSize = 100 / (this.options.column - 1);
     for(var i=0;i<=this.frames;i++){
-      var imgDiff = imgSize * i;
+
+      console.log(dir);
+      var d = dir;
+      if(d == "left"){
+        if(this.x < this.options.row - 1){
+          this.x++;
+        }else{
+          this.x = 0;
+          this.y++;
+          if(this.y > this.options.column){
+            this.y = 0;
+          }
+        };
+      }else{
+        if(this.x >= 0){
+          this.x--;
+        }else{
+          this.x = this.options.row - 1;
+          this.y--;
+          if(this.y < 0 ){
+            this.y = this.options.column-1;
+          }
+        };
+      }
+      this.imgX = imgSize * this.x;
+      this.imgY = imgSize * this.y;
       this.$.css({
-        'background-position': '0 '+ imgDiff +'%'
+        'background-position': this.imgX + '% '+ this.imgY +'%'
       });
     }
   };

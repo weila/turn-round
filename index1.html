@@ -27,7 +27,11 @@
         <h3>background2</h3>
          
       </div>
-      <div class="img">
+      <div class="bg">
+        <h3>background2</h3>
+         
+      </div
+      <div class="img" id="img">
         <h3>image</h3>
         
       </div>  
@@ -36,16 +40,14 @@
 </html>
     <!-- <script src="js/zepto.min.js"></script> -->
     <script src="js/jquery-3.2.0.min.js"></script>
-    <script src="js/index.js"></script>
+    <!-- <script src="js/jquery-1.8.3.min.js"></script> -->
+    <script src="js/turn-round.js"></script>
+    <!-- <script src="js/3deye.js"></script> -->
     <script>
-      $(function() {
-          $('.bg').turn({
+      $(".bg").TurnRound({
               'speed': 1,
-              'row': 1,
-              'column': 24
+              'total': 24
           });
-      })
     </script>
-
 </body>
 </html>
