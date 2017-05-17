@@ -6,3 +6,8 @@
 .bg h3{
   position: absolute;
 }
+.img{
+  width: 100px;
+  padding-bottom: 100px;
+  position: absolute;
+}
